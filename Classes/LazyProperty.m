@@ -10,12 +10,12 @@
 #import "LazyProperty.h"
 #import <objc/runtime.h>
 
-#define NONATOMIC_TAG @",N,"
-
 #pragma mark Private
 // SRC : https://github.com/AlanQuatermain/aqtoolkit
-// DOC : https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtPropertyIntrospection.html#//apple_ref/doc/uid/TP40008048-CH101-SW5
+const char * property_getTypeString(objc_property_t property);
+
 /* Return the type type of a given property */
+/*
 const char * property_getTypeString(objc_property_t property)
 {
 	const char * attrs = property_getAttributes( property );
@@ -36,6 +36,7 @@ const char * property_getTypeString(objc_property_t property)
 	
 	return ( buffer );
 }
+*/
 
 #pragma mark Lazy instanciation utils
 /* Return the class of a given property name. If not a class or class cannot be found, nil will be returned */
@@ -47,7 +48,7 @@ Class classFromPropertyName(const char *cPropertyName, Class aClass)
 	if (!property)
 		return nil;
 	
-	// Extract type string
+	// Extract typr string
 	const char *cTypeString = property_getTypeString(property);
 	
 	if (!cTypeString)
